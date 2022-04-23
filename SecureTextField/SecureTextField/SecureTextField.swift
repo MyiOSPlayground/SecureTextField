@@ -12,7 +12,7 @@ final class SecureTextField: UIView {
     
     // MARK: private property
     
-    private let keyName: String = "SecureTextFieldSecureEnclaveKey"
+    private lazy var keyName: String = UUID().uuidString
     
     // MARK: private UI property
     
@@ -24,7 +24,7 @@ final class SecureTextField: UIView {
     
     private var key: SecKey?
     private var tempSavedString: String? // TODO: 나중에 메모리에 남지 않는 스트링으로 바꾸자.
-    private var beforeTextFieldTextCount: Int = 0 // 필요가 있을까?
+    private var beforeTextFieldTextCount: Int = 0
     private var encryptedTextData: Data = Data() // TODO: 나중에 메모리에 남지 않는 스트링으로 바꾸자.
     
     // MARK: internal property
@@ -39,6 +39,10 @@ final class SecureTextField: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+    }
+    
+    deinit {
+        KeyChainHelper.removeKey(name: self.keyName)
     }
     
     // MARK: private function
@@ -97,33 +101,25 @@ final class SecureTextField: UIView {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let inputedText = textField.text else { return }
+        print("keyName: \(self.keyName)")
         
         if inputedText.count > self.beforeTextFieldTextCount { // 텍스트가 추가된 경우
             let addedText: String = String(inputedText.last ?? Character.init(""))
             let decStr = decString(self.encryptedTextData) ?? ""
-            print("복호화된것 : \(decStr)")
-            print("이제 원문임: \(decStr + addedText)")
             guard let encData = encString(decStr + addedText) else { return }
-            print("다시 암호화 : \(encData)")
             self.encryptedTextData = encData
             self.textField.text?.removeLast()
             self.textField.text = (self.textField.text ?? "") + "-"
         } else if inputedText.count < self.beforeTextFieldTextCount { // 텍스트가 지워진 경우
-            
-        } else { // 텍스트가 같다..? 안들어올것 같은 경우
+            var decStr = decString(self.encryptedTextData) ?? ""
+            decStr.removeLast()
+            guard let encData = encString(decStr) else { return }
+            self.encryptedTextData = encData
+        } else { // 텍스트가 같다. 안들어올것 같은 경우
             
         }
-        
-        
-        
-        
-        
-        self.encryptedTextData = encString(textField.text!)!
-        print("enc ed: \(self.encryptedTextData)")
-        
-        self.beforeTextFieldTextCount = textField.text?.count ?? 0
+        self.beforeTextFieldTextCount = self.textField.text?.count ?? 0
     }
-
     
     // MARK: internal function
     
