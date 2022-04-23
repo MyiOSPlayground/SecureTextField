@@ -13,7 +13,9 @@
 		784662642813D89800BA4AC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 784662622813D89800BA4AC3 /* Main.storyboard */; };
 		784662662813D89A00BA4AC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 784662652813D89A00BA4AC3 /* Assets.xcassets */; };
 		784662692813D89A00BA4AC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 784662672813D89A00BA4AC3 /* LaunchScreen.storyboard */; };
-		784662732813D8EE00BA4AC3 /* CiperTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784662722813D8EE00BA4AC3 /* CiperTextField.swift */; };
+		784662752813DA2300BA4AC3 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784662742813DA2300BA4AC3 /* SecureTextField.swift */; };
+		784662782813DB1900BA4AC3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 784662772813DB1900BA4AC3 /* SnapKit */; };
+		7846627A2813DCC600BA4AC3 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784662792813DCC600BA4AC3 /* KeyChainHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,8 @@
 		784662652813D89A00BA4AC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		784662682813D89A00BA4AC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7846626A2813D89A00BA4AC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		784662722813D8EE00BA4AC3 /* CiperTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiperTextField.swift; sourceTree = "<group>"; };
+		784662742813DA2300BA4AC3 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		784662792813DCC600BA4AC3 /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784662782813DB1900BA4AC3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +69,8 @@
 				784662652813D89A00BA4AC3 /* Assets.xcassets */,
 				784662672813D89A00BA4AC3 /* LaunchScreen.storyboard */,
 				7846626A2813D89A00BA4AC3 /* Info.plist */,
-				784662722813D8EE00BA4AC3 /* CiperTextField.swift */,
+				784662742813DA2300BA4AC3 /* SecureTextField.swift */,
+				784662792813DCC600BA4AC3 /* KeyChainHelper.swift */,
 			);
 			path = SecureTextField;
 			sourceTree = "<group>";
@@ -86,6 +91,9 @@
 			dependencies = (
 			);
 			name = SecureTextField;
+			packageProductDependencies = (
+				784662772813DB1900BA4AC3 /* SnapKit */,
+			);
 			productName = SecureTextField;
 			productReference = 784662592813D89800BA4AC3 /* SecureTextField.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 784662502813D89800BA4AC3;
+			packageReferences = (
+				784662762813DB1900BA4AC3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 7846625A2813D89800BA4AC3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,10 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784662752813DA2300BA4AC3 /* SecureTextField.swift in Sources */,
+				7846627A2813DCC600BA4AC3 /* KeyChainHelper.swift in Sources */,
 				784662612813D89800BA4AC3 /* ViewController.swift in Sources */,
 				7846625D2813D89800BA4AC3 /* AppDelegate.swift in Sources */,
 				7846625F2813D89800BA4AC3 /* SceneDelegate.swift in Sources */,
-				784662732813D8EE00BA4AC3 /* CiperTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +374,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		784662762813DB1900BA4AC3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		784662772813DB1900BA4AC3 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 784662762813DB1900BA4AC3 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 784662512813D89800BA4AC3 /* Project object */;
 }
