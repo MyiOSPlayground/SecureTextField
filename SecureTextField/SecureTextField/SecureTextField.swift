@@ -73,18 +73,19 @@ final class SecureTextField: UIView {
         }
     }
     
-    private func encString(_ input: String) -> Data? {
+    private func encString(_ input: SafeString) -> Data? {
         guard let key = self.key else { return nil }
         guard let publicKey = SecKeyCopyPublicKey(key) else { return nil }
         let encAlgorithm: SecKeyAlgorithm = .eciesEncryptionCofactorVariableIVX963SHA256AESGCM
         guard SecKeyIsAlgorithmSupported(publicKey, .encrypt, encAlgorithm) else { return nil }
         var error: Unmanaged<CFError>?
-        guard let clearTextData = input.data(using: .utf8) else { return nil }
+        let encoding = String.Encoding.utf8.rawValue
+        guard let clearTextData = input.data(using: encoding) else { return nil }
         guard let cipherTextData = SecKeyCreateEncryptedData(publicKey, encAlgorithm, clearTextData as CFData, &error) as? Data else { return nil }
         return cipherTextData
     }
     
-    private func decString(_ encData: Data) -> String? {
+    private func decString(_ encData: Data) -> SafeString? {
         guard let key = key else { return nil }
         let decAlgorithm: SecKeyAlgorithm = .eciesEncryptionCofactorVariableIVX963SHA256AESGCM
         guard SecKeyIsAlgorithmSupported(key, .decrypt, decAlgorithm) else {
@@ -93,7 +94,10 @@ final class SecureTextField: UIView {
         var error: Unmanaged<CFError>?
         guard let decTextData = SecKeyCreateDecryptedData(key, decAlgorithm, encData as CFData, &error) as? Data else { return nil }
         if error != nil { return nil }
-        guard let returnString: String = String(data: decTextData, encoding: .utf8) else { return nil }
+        if String(data: decTextData, encoding: .utf8) == nil {
+            return nil
+        }
+        let returnString: SafeString = SafeString.makeSafeString(NSMutableString.init(string: String(data: decTextData, encoding: .utf8) ?? ""))
         return returnString
     }
     
@@ -110,8 +114,8 @@ final class SecureTextField: UIView {
     }
     
     private func whenAddedText(_ inputedText: String) {
-        let addedText: String = String(inputedText.last ?? Character.init(""))
-        let decStr = decString(self.encryptedTextData) ?? ""
+        let addedText: SafeString = SafeString.makeSafeString(NSMutableString.init(string: String(inputedText.last ?? Character.init(""))))
+        let decStr: SafeString = decString(self.encryptedTextData) ?? SafeString.makeSafeString("")
         guard let encData = encString(decStr + addedText) else { return }
         self.encryptedTextData = encData
         self.textField.text?.removeLast()
@@ -119,15 +123,15 @@ final class SecureTextField: UIView {
     }
     
     private func whenRemovedText() {
-        var decStr = decString(self.encryptedTextData) ?? ""
-        decStr.removeLast()
+        var decStr: SafeString = decString(self.encryptedTextData) ?? ""
+        decStr = decStr.removeLast()
         guard let encData = encString(decStr) else { return }
         self.encryptedTextData = encData
     }
     
     // MARK: internal function
     
-    func getValue() -> String? {
+    func getValue() -> SafeString? {
         return decString(self.encryptedTextData)
     }
     
