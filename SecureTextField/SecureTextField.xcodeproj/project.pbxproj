@@ -16,7 +16,20 @@
 		784662752813DA2300BA4AC3 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784662742813DA2300BA4AC3 /* SecureTextField.swift */; };
 		784662782813DB1900BA4AC3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 784662772813DB1900BA4AC3 /* SnapKit */; };
 		7846627A2813DCC600BA4AC3 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784662792813DCC600BA4AC3 /* KeyChainHelper.swift */; };
+		78FB052C28142FC700C6200F /* SafeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB052B28142FC700C6200F /* SafeString.swift */; };
+		78FB0534281434D300C6200F /* SecureTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB0533281434D300C6200F /* SecureTextFieldTests.swift */; };
+		78FB053B2814350D00C6200F /* SafeStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FB053A2814350D00C6200F /* SafeStringTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		78FB0535281434D300C6200F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 784662512813D89800BA4AC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 784662582813D89800BA4AC3;
+			remoteInfo = SecureTextField;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		784662592813D89800BA4AC3 /* SecureTextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTextField.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +42,10 @@
 		7846626A2813D89A00BA4AC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		784662742813DA2300BA4AC3 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		784662792813DCC600BA4AC3 /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
+		78FB052B28142FC700C6200F /* SafeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeString.swift; sourceTree = "<group>"; };
+		78FB0531281434D300C6200F /* SecureTextFieldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTextFieldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78FB0533281434D300C6200F /* SecureTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldTests.swift; sourceTree = "<group>"; };
+		78FB053A2814350D00C6200F /* SafeStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeStringTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +57,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78FB052E281434D300C6200F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -47,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				7846625B2813D89800BA4AC3 /* SecureTextField */,
+				78FB0532281434D300C6200F /* SecureTextFieldTests */,
 				7846625A2813D89800BA4AC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				784662592813D89800BA4AC3 /* SecureTextField.app */,
+				78FB0531281434D300C6200F /* SecureTextFieldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +97,18 @@
 				7846626A2813D89A00BA4AC3 /* Info.plist */,
 				784662742813DA2300BA4AC3 /* SecureTextField.swift */,
 				784662792813DCC600BA4AC3 /* KeyChainHelper.swift */,
+				78FB052B28142FC700C6200F /* SafeString.swift */,
 			);
 			path = SecureTextField;
+			sourceTree = "<group>";
+		};
+		78FB0532281434D300C6200F /* SecureTextFieldTests */ = {
+			isa = PBXGroup;
+			children = (
+				78FB0533281434D300C6200F /* SecureTextFieldTests.swift */,
+				78FB053A2814350D00C6200F /* SafeStringTests.swift */,
+			);
+			path = SecureTextFieldTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +134,24 @@
 			productReference = 784662592813D89800BA4AC3 /* SecureTextField.app */;
 			productType = "com.apple.product-type.application";
 		};
+		78FB0530281434D300C6200F /* SecureTextFieldTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78FB0537281434D300C6200F /* Build configuration list for PBXNativeTarget "SecureTextFieldTests" */;
+			buildPhases = (
+				78FB052D281434D300C6200F /* Sources */,
+				78FB052E281434D300C6200F /* Frameworks */,
+				78FB052F281434D300C6200F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78FB0536281434D300C6200F /* PBXTargetDependency */,
+			);
+			name = SecureTextFieldTests;
+			productName = SecureTextFieldTests;
+			productReference = 78FB0531281434D300C6200F /* SecureTextFieldTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -110,6 +164,10 @@
 				TargetAttributes = {
 					784662582813D89800BA4AC3 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					78FB0530281434D300C6200F = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 784662582813D89800BA4AC3;
 					};
 				};
 			};
@@ -130,6 +188,7 @@
 			projectRoot = "";
 			targets = (
 				784662582813D89800BA4AC3 /* SecureTextField */,
+				78FB0530281434D300C6200F /* SecureTextFieldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -145,6 +204,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		78FB052F281434D300C6200F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -157,10 +223,28 @@
 				784662612813D89800BA4AC3 /* ViewController.swift in Sources */,
 				7846625D2813D89800BA4AC3 /* AppDelegate.swift in Sources */,
 				7846625F2813D89800BA4AC3 /* SceneDelegate.swift in Sources */,
+				78FB052C28142FC700C6200F /* SafeString.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78FB052D281434D300C6200F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78FB0534281434D300C6200F /* SecureTextFieldTests.swift in Sources */,
+				78FB053B2814350D00C6200F /* SafeStringTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78FB0536281434D300C6200F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 784662582813D89800BA4AC3 /* SecureTextField */;
+			targetProxy = 78FB0535281434D300C6200F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		784662622813D89800BA4AC3 /* Main.storyboard */ = {
@@ -352,6 +436,42 @@
 			};
 			name = Release;
 		};
+		78FB0538281434D300C6200F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P4ZJYAK634;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanwe.SecureTextFieldTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecureTextField.app/SecureTextField";
+			};
+			name = Debug;
+		};
+		78FB0539281434D300C6200F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P4ZJYAK634;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanwe.SecureTextFieldTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecureTextField.app/SecureTextField";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -369,6 +489,15 @@
 			buildConfigurations = (
 				7846626E2813D89A00BA4AC3 /* Debug */,
 				7846626F2813D89A00BA4AC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78FB0537281434D300C6200F /* Build configuration list for PBXNativeTarget "SecureTextFieldTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78FB0538281434D300C6200F /* Debug */,
+				78FB0539281434D300C6200F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
