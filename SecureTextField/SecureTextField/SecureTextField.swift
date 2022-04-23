@@ -67,8 +67,7 @@ final class SecureTextField: UIView {
         self.key = KeyChainHelper.loadKey(name: self.keyName)
         if key == nil {
             do {
-                key = try KeyChainHelper.makeAndStoreKey(name: keyName,
-                                                         requiresBiometry: false)
+                key = try KeyChainHelper.makeAndStoreKey(name: keyName, requiresBiometry: false)
             } catch let err {
                 print("SecureTextField Error. can't make key: \(err.localizedDescription)")
             }
@@ -101,27 +100,37 @@ final class SecureTextField: UIView {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let inputedText = textField.text else { return }
-        print("keyName: \(self.keyName)")
-        
-        if inputedText.count > self.beforeTextFieldTextCount { // 텍스트가 추가된 경우
-            let addedText: String = String(inputedText.last ?? Character.init(""))
-            let decStr = decString(self.encryptedTextData) ?? ""
-            guard let encData = encString(decStr + addedText) else { return }
-            self.encryptedTextData = encData
-            self.textField.text?.removeLast()
-            self.textField.text = (self.textField.text ?? "") + "-"
-        } else if inputedText.count < self.beforeTextFieldTextCount { // 텍스트가 지워진 경우
-            var decStr = decString(self.encryptedTextData) ?? ""
-            decStr.removeLast()
-            guard let encData = encString(decStr) else { return }
-            self.encryptedTextData = encData
-        } else { // 텍스트가 같다. 안들어올것 같은 경우
-            
+        if inputedText.count > self.beforeTextFieldTextCount {
+            whenAddedText(inputedText)
+        } else if inputedText.count < self.beforeTextFieldTextCount {
+            whenRemovedText()
+        } else {
+            // nothing
         }
         self.beforeTextFieldTextCount = self.textField.text?.count ?? 0
     }
     
+    private func whenAddedText(_ inputedText: String) {
+        let addedText: String = String(inputedText.last ?? Character.init(""))
+        let decStr = decString(self.encryptedTextData) ?? ""
+        guard let encData = encString(decStr + addedText) else { return }
+        self.encryptedTextData = encData
+        self.textField.text?.removeLast()
+        self.textField.text = (self.textField.text ?? "") + "-"
+    }
+    
+    private func whenRemovedText() {
+        var decStr = decString(self.encryptedTextData) ?? ""
+        decStr.removeLast()
+        guard let encData = encString(decStr) else { return }
+        self.encryptedTextData = encData
+    }
+    
     // MARK: internal function
+    
+    func getValue() -> String? {
+        return decString(self.encryptedTextData)
+    }
     
     // MARK: action
 

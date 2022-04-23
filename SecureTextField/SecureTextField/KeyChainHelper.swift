@@ -10,7 +10,7 @@ import UIKit
 class KeyChainHelper {
     
     static func loadKey(name: String) -> SecKey? {
-        let tag = name.data(using: .utf8)!
+        guard let tag = name.data(using: .utf8) else { return nil }
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrApplicationTag as String: tag,
@@ -26,23 +26,17 @@ class KeyChainHelper {
         return (item as! SecKey)
     }
     
-    static func makeAndStoreKey(name: String, requiresBiometry: Bool = false) throws -> SecKey {
+    static func makeAndStoreKey(name: String, requiresBiometry: Bool = false) throws -> SecKey? {
         removeKey(name: name)
 
         let flags: SecAccessControlCreateFlags
         if #available(iOS 11.3, *) {
-            flags = requiresBiometry ?
-                [.privateKeyUsage, .biometryCurrentSet] : .privateKeyUsage
+            flags = requiresBiometry ? [.privateKeyUsage, .biometryCurrentSet] : .privateKeyUsage
         } else {
-            flags = requiresBiometry ?
-                [.privateKeyUsage, .touchIDCurrentSet] : .privateKeyUsage
+            flags = requiresBiometry ? [.privateKeyUsage, .touchIDCurrentSet] : .privateKeyUsage
         }
-        let access =
-            SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                            kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-                                            flags,
-                                            nil)!
-        let tag = name.data(using: .utf8)!
+        guard let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault, kSecAttrAccessibleWhenUnlockedThisDeviceOnly, flags, nil) else { return nil }
+        guard let tag = name.data(using: .utf8) else { return nil }
         let attributes: [String: Any] = [
             kSecAttrKeyType as String: kSecAttrKeyTypeEC,
             kSecAttrKeySizeInBits as String: 256,
@@ -63,7 +57,7 @@ class KeyChainHelper {
     }
     
     static func removeKey(name: String) {
-        let tag = name.data(using: .utf8)!
+        guard let tag = name.data(using: .utf8) else { return }
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrApplicationTag as String: tag
