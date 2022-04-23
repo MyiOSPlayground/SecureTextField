@@ -18,9 +18,7 @@ class SafeStringTests: XCTestCase {
     }
 
     func testExample() throws {
-        let safeString: NSMutableString.SafeString = NSMutableString.SafeString.makeSafeString("hello")
-        let some = safeString.last()
-        print("some: \(some)")
+        
     }
 
 }

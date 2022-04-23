@@ -24,7 +24,7 @@ final class SecureTextField: UIView {
     
     private var key: SecKey?
     private var beforeTextFieldTextCount: Int = 0
-    private var encryptedTextData: Data = Data() // TODO: 나중에 메모리에 남지 않는 스트링으로 바꾸자.
+    private var encryptedTextData: Data = Data()
     
     // MARK: internal property
     

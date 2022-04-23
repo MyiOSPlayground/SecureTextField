@@ -7,8 +7,9 @@
 
 import UIKit
 
+typealias SafeString = NSMutableString
+
 extension NSMutableString {
-    typealias SafeString = NSMutableString
     
     static func makeSafeString(_ inputed: NSMutableString) -> SafeString {
         let encoding = String.Encoding.utf8.rawValue
@@ -55,13 +56,11 @@ extension NSMutableString {
     }
     
     func last() -> SafeString {
-        let some = self.character(at: self.length-1)
-        Character(unicodeScalarLiteral: .init)
-        return ""
+        return SafeString.makeSafeString(NSMutableString.init(string: self.substring(from: length-1)))
     }
     
-    func removeLast() {
-        
+    func removeLast() -> SafeString {
+        return SafeString.makeSafeString(NSMutableString.init(string: self.substring(to: self.length-1)))
     }
 }
 
