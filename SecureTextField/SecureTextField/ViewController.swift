@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func getValue(_ sender: Any) {
-        print("value: \(String(describing: self.secureTextField.getValue()))")
+        print("value: \(String(describing: self.secureTextField.value()))")
     }
     
 }

@@ -130,7 +130,7 @@ final class SecureTextField: UIView {
     
     // MARK: internal function
     
-    func getValue() -> SafeString? {
+    func value() -> SafeString? {
         return decString(self.encryptedTextData)
     }
     
