@@ -82,6 +82,7 @@ final class SecureTextField: UIView {
         let encoding = String.Encoding.utf8.rawValue
         guard let clearTextData = input.data(using: encoding) else { return nil }
         guard let cipherTextData = SecKeyCreateEncryptedData(publicKey, encAlgorithm, clearTextData as CFData, &error) as? Data else { return nil }
+        if error != nil { error = nil ; return nil }
         return cipherTextData
     }
     
@@ -93,10 +94,8 @@ final class SecureTextField: UIView {
         }
         var error: Unmanaged<CFError>?
         guard let decTextData = SecKeyCreateDecryptedData(key, decAlgorithm, encData as CFData, &error) as? Data else { return nil }
-        if error != nil { return nil }
-        if String(data: decTextData, encoding: .utf8) == nil {
-            return nil
-        }
+        if error != nil { error = nil ; return nil }
+        if String(data: decTextData, encoding: .utf8) == nil { return nil }
         let returnString: SafeString = SafeString.makeSafeString(NSMutableString.init(string: String(data: decTextData, encoding: .utf8) ?? ""))
         return returnString
     }
